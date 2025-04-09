@@ -27,8 +27,8 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100 \
     NVIDIA_VISIBLE_DEVICES=all \
     NVIDIA_DRIVER_CAPABILITIES=compute,utility \
-    TORCH_CUDA_ARCH_LIST=\"7.0;7.5;8.0;8.6\" \
-    TORCH_NVCC_FLAGS=\"-Xfatbin -compress-all\"
+    TORCH_CUDA_ARCH_LIST="7.0;7.5;8.0;8.6" \
+    TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
@@ -45,17 +45,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Rust (needed by sphn)
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-    . \"$HOME/.cargo/env\" && \
+    . "$HOME/.cargo/env" && \
     rustc --version && cargo --version
 
 WORKDIR /app
 
 COPY requirements.txt .
-RUN . \"$HOME/.cargo/env\" && pip3 install --upgrade pip && \
+RUN . "$HOME/.cargo/env" && pip3 install --upgrade pip && \
     pip3 install -r requirements.txt
-
-# ...the rest of your Docker instructions...
-
 
 # Copy requirements first for better caching
 COPY requirements.txt .
