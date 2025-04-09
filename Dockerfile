@@ -53,7 +53,10 @@ ENV CMAKE_ARGS="-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
 WORKDIR /app
 
+# Copy requirements file
 COPY requirements.txt .
+
+# Upgrade pip and install Python dependencies; the CMAKE_ARGS will be applied to native builds
 RUN . "$HOME/.cargo/env" && pip3 install --upgrade pip && \
     pip3 install -r requirements.txt
 
