@@ -8,7 +8,7 @@ torchaudio>=2.0.0
 transformers>=4.35.0
 tokenizers>=0.14.0
 sentencepiece>=0.1.99
-triton>=2.1.0; platform_system != "Windows"
+triton>=2.1.0; platform_machine == "x86_64" and platform_system != "Windows"
 triton-windows>=2.1.0; platform_system == "Windows"
 torchao>=0.1.0
 torchtune>=0.5.0
