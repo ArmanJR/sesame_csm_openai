@@ -77,7 +77,7 @@ RUN pip3 install --no-cache-dir --upgrade pip && \
     pip3 install torch torchaudio numpy
 
 # Install torchao from source
-RUN pip3 install torchao --extra-index-url https://download.pytorch.org/whl/cu126
+RUN pip3 install torchao --extra-index-url https://download.pytorch.org/whl/cu124
 
 # Install torchtune from source with specific branch for latest features
 RUN git clone https://github.com/pytorch/torchtune.git /tmp/torchtune && \
