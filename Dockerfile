@@ -48,6 +48,9 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     . "$HOME/.cargo/env" && \
     rustc --version && cargo --version
 
+# Set CMake flag for compatibility workaround
+ENV CMAKE_ARGS="-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+
 WORKDIR /app
 
 COPY requirements.txt .
