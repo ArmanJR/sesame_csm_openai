@@ -38,8 +38,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     build-essential \
     curl \
-    cmake \          # CMake is required
-    libopus-dev \    # Required for audiopus_sys (Opus) to build
+    cmake \
+    libopus-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
