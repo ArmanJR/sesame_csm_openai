@@ -38,11 +38,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
     git \
     build-essential \
+    curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Rust (needed by sphn)
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    . "$HOME/.cargo/env" && \
+    rustc --version && cargo --version
+
 # Set working directory
 WORKDIR /app
+
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN . "$HOME/.cargo/env" && pip3 install --upgrade pip && \
+    pip3 install -r requirements.txt
 
 # Copy requirements first for better caching
 COPY requirements.txt .
